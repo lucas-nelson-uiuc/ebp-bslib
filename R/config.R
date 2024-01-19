@@ -1,3 +1,5 @@
+library(shiny)
+
 # config object functions
 read_config <- function(config_path=NULL) {
     stopifnot(file.exists(config_path))
@@ -26,6 +28,8 @@ get_attribute <- function(analytic_obj=NULL, attribute=NULL) {
     analytic_obj[[attribute]]
 }
 
-format_attribute <- function(analytic_obj=NULL, attribute=NULL) {
-    analytic_inputs <- get_attribute(anaytic_obj, attribute)
+get_drf_tab <- function(tab) {
+  if (is.character(tab)) {
+    return( "Demo data for now" )
+  }
 }

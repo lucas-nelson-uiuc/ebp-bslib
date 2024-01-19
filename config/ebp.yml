@@ -3,33 +3,108 @@ EBP Shiny:
     analytics:
         Demographic Data Analytic:
             path: DDA
-            directories:
-                data_prep: Data Prep
-                tableau: Tableau Shell
             description: The Demographic Data Analytic is a year-over-year comparison of demographic populations. Changes are recorded and highlighted for audit teams to assess a demographic population has not significantly changed between periods (typicall consecutive years).
-            requirement:
-            output:
+            outputs:
+                Tableau:
+                    abbr: TWBX
+                    description: Pretty cool looking dashboards to describe the data.
+                Combined Memo:
+                    abbr: 1200E
+                    description: Form DA1200E, Data Analytics Specialist Combined Scoping and Summary Memo for Employee Benefit Plan (EBP) Audits.
+                Procedures Memo:
+                    abbr: PROC
+                    description: This memo will populate for you.
+                Controls Over Audit Tools Memo:
+                    abbr: 22852
+                    description: This memo will populate for you.
             inputs:
                 Data Request Form:
                     abbr: DRF
-                    description: Provide client-level data and field mapping
+                    description: Provide client-level data and field mapping.
+                    sheets:
+                        - Input Parameter
+                        - Mapping Parameter
                 Prior Year Census:
                     abbr: PY
-                    description: Census level demographic data from prior period
+                    description: Census level demographic data from prior period.
                 Current Year Census:
                     abbr: CY
-                    description: Census level demographic data from current period
-
-    # 401(k) Compliant Analytic:
-    #     path: 401k
-    #     description: Something goes here
-    #     requirements: Dataset1, Dataset2
-    # Pricing and Investment Tracking Analytic:
-    #     Risk Assessment Module:
-    #         path: PITA/Risk Assessment Module
-    #         description: Something goes here
-    #         requirements: Dataset1, Dataset2
-    #     Valuation Module:
-    #         path: PITA/Valuation Module
-    #         description: Something goes here
-    #         requirements: Dataset1, Dataset2
+                    description: Census level demographic data from current period.
+        401(k) Compliant Analytic:
+            path: 401(k)
+            description: The 401(k) Compliant Analytic is something I do not understand.
+            outputs:
+                Tableau:
+                    abbr: TWBX
+                    description: Pretty cool looking dashboards to describe the data.
+                Combined Memo:
+                    abbr: 1200E
+                    description: This memo will populate for you.
+                Procedures Memo:
+                    abbr: PROC
+                    description: This memo will populate for you.
+                Controls Over Audit Tools Memo:
+                    abbr: 22852
+                    description: This memo will populate for you.
+            inputs:
+                Data Request Form:
+                    abbr: DRF
+                    description: Provide client-level data and field mapping.
+                Dataset 2:
+                    abbr: D2
+                    description: Census level demographic data from prior period.
+                Dataset 3:
+                    abbr: D3
+                    description: Census level demographic data from current period.
+        PITA (Risk Assessment):
+            path: PITA/Risk Assessment Module
+            description: The 401(k) Compliant Analytic is something I do not understand.
+            outputs:
+                Tableau:
+                    abbr: TWBX
+                    description: Pretty cool looking dashboards to describe the data.
+                Combined Memo:
+                    abbr: 1200E
+                    description: This memo will populate for you.
+                Procedures Memo:
+                    abbr: PROC
+                    description: This memo will populate for you.
+                Controls Over Audit Tools Memo:
+                    abbr: 22852
+                    description: This memo will populate for you.
+            inputs:
+                Data Request Form:
+                    abbr: DRF
+                    description: Provide client-level data and field mapping.
+                Dataset 2:
+                    abbr: D2
+                    description: Census level demographic data from prior period.
+                Dataset 3:
+                    abbr: D3
+                    description: Census level demographic data from current period.
+        PITA (Valuation Module):
+            path: PITA/Valuation Module
+            description: The 401(k) Compliant Analytic is something I do not understand.
+            outputs:
+                Tableau:
+                    abbr: TWBX
+                    description: Pretty cool looking dashboards to describe the data.
+                Combined Memo:
+                    abbr: 1200E
+                    description: This memo will populate for you.
+                Procedures Memo:
+                    abbr: PROC
+                    description: This memo will populate for you.
+                Controls Over Audit Tools Memo:
+                    abbr: 22852
+                    description: This memo will populate for you.
+            inputs:
+                Data Request Form:
+                    abbr: DRF
+                    description: Provide client-level data and field mapping.
+                Dataset 2:
+                    abbr: D2
+                    description: Census level demographic data from prior period.
+                Dataset 3:
+                    abbr: D3
+                    description: Census level demographic data from current period.

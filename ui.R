@@ -39,6 +39,7 @@ library(bslib)
 #   > log changes we make, write to memos
 # (ARO DWW) conversions take time; improvement? automation? easier way? reduce manual involvement?
 #   > @Olivia "consistent file types"
+#   > allow file input, then output file to directory with transformations performed
 
 ### Shiny App
 ### ---------
