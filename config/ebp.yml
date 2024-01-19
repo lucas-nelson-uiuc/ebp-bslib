@@ -1,0 +1,35 @@
+EBP Shiny:
+    path: \\hdcaersnas/AERS/WEST/auditinnovationdata_fpx1140501/EBP - Employee Benefit Plans/FY24 Analytics Shells
+    analytics:
+        Demographic Data Analytic:
+            path: DDA
+            directories:
+                data_prep: Data Prep
+                tableau: Tableau Shell
+            description: The Demographic Data Analytic is a year-over-year comparison of demographic populations. Changes are recorded and highlighted for audit teams to assess a demographic population has not significantly changed between periods (typicall consecutive years).
+            requirement:
+            output:
+            inputs:
+                Data Request Form:
+                    abbr: DRF
+                    description: Provide client-level data and field mapping
+                Prior Year Census:
+                    abbr: PY
+                    description: Census level demographic data from prior period
+                Current Year Census:
+                    abbr: CY
+                    description: Census level demographic data from current period
+
+    # 401(k) Compliant Analytic:
+    #     path: 401k
+    #     description: Something goes here
+    #     requirements: Dataset1, Dataset2
+    # Pricing and Investment Tracking Analytic:
+    #     Risk Assessment Module:
+    #         path: PITA/Risk Assessment Module
+    #         description: Something goes here
+    #         requirements: Dataset1, Dataset2
+    #     Valuation Module:
+    #         path: PITA/Valuation Module
+    #         description: Something goes here
+    #         requirements: Dataset1, Dataset2
