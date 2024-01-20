@@ -1,0 +1,20 @@
+Demographic Data Analytic:
+    path: DDA
+    description: |
+        The Demographic Data Analytic is a year-over-year comparison of demographic populations.
+        Changes are recorded and highlighted for audit teams to assess a demographic population
+        has not significantly changed between periods (typicall consecutive years).
+        
+        This analytic makes use of PII data - please see the PII tab to learn more about how to
+        safely handle the data required for this analytic.
+    inputs:
+        - Data Request Form
+        - Census Data::PY
+        - Census Data::CY
+    outputs:
+        Tableau:
+          description: Details changes between the provided populations.
+        memos:
+          - Combined Scoping and Summary
+          - Procedures
+          - Controls Over Audit Tools
