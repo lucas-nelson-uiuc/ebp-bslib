@@ -1,17 +1,53 @@
+### DATASET REPOSITORY
+# All datasets below should be referenced by at least one of the
+# analytics. Please follow the structure of other analytics - the
+# program will throw an error if it detects invalid structures.
+
+# {{ example analytic }}
+# Analytic Name:
+#   abbr: AN
+#   description: Short, sufficient description of analytic.
+#   extension:
+#     - list
+#     - of
+#     - acceptable
+#     - file
+#     - extensions
+
+# Please note that if you specify xlsx AND you want to read
+# specific sheet names, you must pass those sheet names in a
+# separate `sheets` argument. Else, the program will read
+# the first sheet and convert the file to `csv`.
+
+
+Census Data: &Census_Data
+  description: Census level demographic data from current period.
+  extension:
+    - csv
+    - xlsx
+
+
 Data Request Form:
+  abbr: DRF
   description: Provide client-level data and field mapping.
   extension: xlsx
   sheets:
     - Input Parameter
     - Mapping Parameter
 
-Census Data:
-  description: Census level demographic data from current period.
-  extension:
-    - csv
-    - xlsx
+
+Current Period Census:
+  abbr: CY
+  <<: *Census_Data
+
+  
+Prior Period Census:
+  abbr: PY
+  <<: *Census_Data
+
     
 DNAV Input:
+  abbr: DNAV
   description: I actually don't know what this data is.
   extension:
     - csv

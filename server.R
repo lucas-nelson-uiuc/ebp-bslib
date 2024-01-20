@@ -53,7 +53,7 @@ server <- function(input, output, session) {
               format_data_request_form_pill()
             })
             output$ui_input_datasets <- renderUI({
-              format_data_request_form_pill()
+              format_input_data_pill()
             })
         }
     )

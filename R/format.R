@@ -60,3 +60,15 @@ format_data_request_form_pill <- function() {
     description="The Data Request Form comes with two tabs that must be populated: Input Parameters & Mapping Parameters."
   )
 }
+
+
+format_input_data_pill <- function() {
+  pills <- list(
+    "Input Parameters" = format_data_table(frame=get_drf_tab("Input Parameters")),
+    "Mapping Parameters" = format_data_table(frame=get_drf_tab("Mapping Parameters"))
+  )
+  format_pill(
+    pill_panels=pills,
+    description="The Data Request Form comes with two tabs that must be populated: Input Parameters & Mapping Parameters."
+  )
+}
