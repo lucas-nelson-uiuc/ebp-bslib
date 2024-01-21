@@ -4,6 +4,7 @@ render_analytic_details <- function(id) {
   bslib::accordion(
     bslib::accordion_panel(title='Tableau Workbook', tableau_workbook_details),
     bslib::accordion_panel(title='Memo Package', memo_package_details),
+    id='placeholder', # returns ERROR on specific environments if not present
     open=FALSE
   )
 }

@@ -70,6 +70,7 @@ module_display_procedures <- function(id, analytic_obj=NULL) {
         bslib::accordion(
           bslib::accordion_panel("What happens when I press this button?", description),
           bslib::accordion_panel("How do I handle errors?", description),
+          id='placeholder', # returns ERROR on specific environments if not present
           open=FALSE
         ),
         header='Knit Markdown File',
@@ -95,6 +96,7 @@ module_display_procedures <- function(id, analytic_obj=NULL) {
         bslib::accordion(
           bslib::accordion_panel("What happens when I press this button?", description),
           bslib::accordion_panel("How do I handle errors?", description),
+          id='placeholder', # returns ERROR on specific environments if not present
           open=FALSE
         ),
         header='Generate Memos',
