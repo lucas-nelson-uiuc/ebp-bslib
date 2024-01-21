@@ -22,23 +22,24 @@ PAGE_HOME <- function() {
         )
         
         bslib::sidebar(
-            tags$b('Analytic Configuration'),
-            tags$i(
-              'Select analytic you want to complete. Complete on-screen instructions to validate input and accurately generate output.',
-              style='font-size: 14px; text-align: justify;'
-            ),
-            widget_select_analytic,
-            widget_confirm_analytic,
-            tags$hr(),
-            tags$b('Output Configuration'),
-            tags$i(
-              'Optionally complete on-screen instructions to generate memos along with analytic output.',
-              style='font-size: 14px; text-align: justify;'
-            ),
-            tags$br(),
-            widget_toggle_html,
-            widget_toggle_memos,
-            width='30%'
+          tags$b('Analytic Configuration'),
+          tags$i(
+            'Select analytic you want to complete. Complete on-screen instructions to validate input and accurately generate output.',
+            style='font-size: 14px; text-align: justify;'
+          ),
+          widget_select_analytic,
+          widget_confirm_analytic,
+          tags$hr(),
+          tags$b('Output Configuration'),
+          tags$i(
+            'Optionally complete on-screen instructions to generate memos along with analytic output.',
+            style='font-size: 14px; text-align: justify;'
+          ),
+          tags$br(),
+          widget_toggle_html,
+          widget_toggle_memos,
+          tags$hr(),
+          width='30%'
         )
     }
     
@@ -56,15 +57,14 @@ PAGE_HOME <- function() {
         
         data_request_form_content <- function() {
           bslib::page_fluid(
-            "Each analytic has a Data Request Form (DRF), a file that specifies important analytic-related material and field mappings for the raw data.",
-            uiOutput('ui_data_request_form')
+            uiOutput('display_data_request_form_ui')
           )
         }
         
         analytic_data_content <- function() {
           bslib::page_fluid(
-            "This panel allows you to interact with the data provided for the analytic. Ensure the data looks as expected.",
-            uiOutput('ui_analytic_data_content')
+            # uiOutput('display_validations_ui'),
+            uiOutput('display_analytic_data_ui')
           )
         }
         

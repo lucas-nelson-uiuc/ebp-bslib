@@ -14,6 +14,43 @@ server <- function(input, output, session) {
         choices=get_analytics(EBP_CONFIG_ANALYTICS)
     )
   })
+  
+  observeEvent(
+    ignoreNULL=TRUE,
+    ignoreInit=TRUE,
+    eventExpr = { input$analytic_selected },
+    handlerExpr = {
+      
+      temp_config <- get_config_attribute(
+        config_obj=EBP_CONFIG_ANALYTICS,
+        attribute=input$analytic_selected
+      ) |> 
+        update_config(type='memos', type_config=EBP_CONFIG_MEMOS)
+      
+      output$text_analytic_name <- renderText({
+        input$analytic_selected
+      })
+      
+      output$text_analytic_description <- renderUI({
+        p(
+          get_config_attribute(temp_config, 'description'),
+          style='text-align: justify'
+        )
+      })
+      
+      output$analytic_details_ui <- renderUI({
+        render_analytic_details("TempConfig")
+      })
+      module_analytic_details("TempConfig", analytic_obj=temp_config)
+      
+      if (EBP_ANALYTIC_NAME() != '') {
+        if (EBP_ANALYTIC_NAME() != input$analytic_selected) {
+          shiny::showNotification("Selected analytic does not match rendered analytic", type="warning")
+        }
+      }
+      
+    }
+  )
 
   observeEvent(
       ignoreNULL=TRUE,
@@ -53,40 +90,35 @@ server <- function(input, output, session) {
           })
           module_analytic_details("Analytic", analytic_obj=EBP_ANALYTIC())
           
+          output$display_data_request_form_ui <- renderUI({
+            render_display_data(
+              "DataRequestForm",
+              info="Each analytic has a Data Request Form (DRF), a file that specifies important analytic-related material and field mappings for the raw data."
+            )
+          })
+          module_display_data(
+            "DataRequestForm",
+            analytic_obj=EBP_ANALYTIC()
+          )
+          
+          output$display_analytic_data_ui <- renderUI({
+            render_display_data(
+              "AnalyticData",
+              info="This panel allows you to interact with the data provided for the analytic. Ensure the data looks as expected."
+            )
+          })
+          module_display_data(
+            "AnalyticData",
+            analytic_obj=EBP_ANALYTIC()
+          )
+          
           output$display_procedures_ui <- renderUI({
             render_display_procedures("Output")
           })
           module_display_procedures("Output", analytic_obj = EBP_ANALYTIC())
           
         }
-        
-        # output$ui_analytic_accordion <- renderUI({
-        #     bslib::accordion(
-        #         bslib::accordion_panel(
-        #             title='Required Datasets',
-        #             format_prompt(EBP_ANALYTIC_NAME()),
-        #             tags$ul(
-        #               format_nested_attribute(EBP_ANALYTIC(), 'inputs')
-        #             )
-        #         ),
-        #         bslib::accordion_panel(
-        #             title='Generated Outputs',
-        #             tags$ul(
-        #               format_nested_attribute(EBP_ANALYTIC(), 'outputs')
-        #             )
-        #         ),
-        #         id='accordion',
-        #         open=FALSE
-        #     )
-        # })
-        # 
-        # output$ui_data_request_form <- renderUI({
-        #   format_data_request_form_pill()
-        # })
-        # 
-        # output$ui_input_datasets <- renderUI({
-        #   format_input_data_pill()
-        # })
+
       }
   )
 }
