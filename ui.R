@@ -59,17 +59,25 @@ EBP_CONFIG <- read_config('config/ebp.yml')
 
 
 ui <- page_navbar(
-    title = EBP_CONFIG[['title']],
-    theme = bs_theme(
-        version = EBP_CONFIG[['bslib']][['version']],
-        bootswatch = EBP_CONFIG[['bslib']][['theme']]
-    ),
-    nav_panel('Shell', PAGE_HOME()),
-    nav_spacer(),
-    nav_menu(
-        title='More Info',
-        nav_item('PII'),
-        nav_item('FAQ'),
-        nav_item('...')
-    )
+  tags$head(tags$style(HTML(
+    "
+        .bslib-sidebar-layout > .collapse-toggle {
+            padding: 100px 0;
+            background-color: #9b83c0;
+        }
+        "
+  ))),
+  title = EBP_CONFIG[['title']],
+  theme = bs_theme(
+      version = EBP_CONFIG[['bslib']][['version']],
+      bootswatch = EBP_CONFIG[['bslib']][['theme']]
+  ),
+  nav_panel('Shell', PAGE_HOME()),
+  nav_spacer(),
+  nav_menu(
+      title='More Info',
+      nav_item('PII'),
+      nav_item('FAQ'),
+      nav_item('...')
+  )
 )
