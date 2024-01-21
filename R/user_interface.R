@@ -12,14 +12,16 @@ PAGE_HOME <- function() {
             tags$b('Confirm Selection'),
             width='100%'
         )
-        widget_toggle_memos <- shiny::checkboxInput(
-            'automemo_confirmed',
-            tags$b('Generate Memos?'),
-            width='100%'
+        widget_toggle_html <- shiny::checkboxInput(
+          'toggle_html',
+          'Display HTML Report'
         )
+        widget_toggle_memos <- shiny::checkboxInput(
+          'toggle_automemo',
+          'Generate Memos'
+        )
+        
         bslib::sidebar(
-            title = tags$h5(tags$b('Input Widgets')),
-            tags$hr(),
             tags$b('EBP Analytic'),
             tags$i(
               'Select analytic you want to complete. Complete on-screen instructions to validate input and accurately generate output.',
@@ -33,7 +35,9 @@ PAGE_HOME <- function() {
               'Optionally complete on-screen instructions to generate memos along with analytic output.',
               style='font-size: 14px; text-align: justify;'
             ),
-            width='20%'
+            widget_toggle_html,
+            widget_toggle_memos,
+            width='30%'
         )
     }
     
@@ -89,10 +93,8 @@ PAGE_HOME <- function() {
         )
     }
     
-    title <- "EBP Analytics Shell"
     bslib::layout_sidebar(
-        title=title,
-        sidebar=sidebar(),
-        content()
+      sidebar=sidebar(),
+      content()
     )
 }
