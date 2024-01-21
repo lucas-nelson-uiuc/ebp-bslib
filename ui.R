@@ -55,6 +55,7 @@ library(bslib)
 # integration with previous steps
 #   > writing parts of the memo with other steps...
 
+# GITHUB IS WORKING
 
 ui <- page_navbar(
     title = "EBP Analytics Shell",
