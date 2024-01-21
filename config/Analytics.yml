@@ -15,6 +15,18 @@
 #     - extensions
 
 
+tableau_shell: &tableau_shell
+  name: "[Client Name] - [Analytic Name] - [Plan Name] - FY[XX]"
+  description: Details changes between the provided populations.
+  
+memo_pkg: &memo_pkg
+  - Combined Scoping and Summary Memo
+  - Procedures Memo
+  - Controls Over Audit Tools Memo
+  
+outputs_pkg: &outputs_pkg
+  tableau_shell: *tableau_shell
+  memos: *memo_pkg
 
 
 Demographic Data Analytic:
@@ -26,63 +38,53 @@ Demographic Data Analytic:
     
     This analytic makes use of PII data - please see the PII tab to learn more about how to
     safely handle the data required for this analytic.
-  inputs:
+  datasets:
     - Data Request Form
     - Prior Period Census
     - Current Period Census
-  outputs:
-    tableau:
-      name: [Client Name] - DDA - [Plan Name] - FY[XX]
-      description: Details changes between the provided populations.
-    memos:
-      - Combined Scoping and Summary
-      - Procedures
-      - Controls Over Audit Tools
+  <<: *outputs_pkg
 
 
 401k Compliant Analytic:
   path: 401(k)
-  description: Description of analytic
-  inputs:
+  description: |
+    The 401(k) Compliant Analytic is a year-over-year comparison of demographic populations.
+    Changes are recorded and highlighted for audit teams to assess a demographic population
+    has not significantly changed between periods (typicall consecutive years).
+    
+    This analytic makes use of PII data - please see the PII tab to learn more about how to
+    safely handle the data required for this analytic.
+  datasets:
     - Data Request Form
     - 401k Data
-  outputs:
-    tableau:
-      path: something
-      description: something
-    memos:
-      - Combined Scoping and Summary
-      - Procedures
-      - Controls Over Audit Tools
+  <<: *outputs_pkg
 
 
 PITA Valuation:
   path: PITA/Valuation Module
-  description: The 401(k) Compliant Analytic is something I do not understand.
-  inputs:
+  description: |
+    The Valuation Module is a year-over-year comparison of demographic populations.
+    Changes are recorded and highlighted for audit teams to assess a demographic population
+    has not significantly changed between periods (typicall consecutive years).
+    
+    This analytic makes use of PII data - please see the PII tab to learn more about how to
+    safely handle the data required for this analytic.
+  datasets:
     - Data Request Form
     - DNAV Input
-  outputs:
-    tableau:
-      path: unsure
-      description: unknown
-    memos:
-      - Combined Summary and Scoping
-      - Procedures
-      - Controls Over Audit Tools
+  <<: *outputs_pkg
 
 
 PITA Risk Assessment:
   path: PITA/Risk Assessment Module
-  description: The 401(k) Compliant Analytic is something I do not understand.
-  inputs:
+  description: |
+    The Risk Assessment Module is a year-over-year comparison of demographic populations.
+    Changes are recorded and highlighted for audit teams to assess a demographic population
+    has not significantly changed between periods (typicall consecutive years).
+    
+    This analytic makes use of PII data - please see the PII tab to learn more about how to
+    safely handle the data required for this analytic.
+  datasets:
     - Data Request Form
     - DNAV Input
-  outputs:
-    tableau:
-      path: unsure
-      description: unknown
-    memos:
-      - Combined Summary and Scoping
-      - Procedures
-      - Controls Over Audit Tools
+  <<: *outputs_pkg

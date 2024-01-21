@@ -1,4 +1,5 @@
-EBP Shiny:
-    path: \\hdcaersnas/AERS/WEST/auditinnovationdata_fpx1140501/EBP - Employee Benefit Plans/FY24 Analytics Shells
-    bslib:
-      theme: pulse
+path: \\hdcaersnas/AERS/WEST/auditinnovationdata_fpx1140501/EBP - Employee Benefit Plans/FY24 Analytics Shells
+title: "EBP Analytic Suite"
+bslib:
+  version: 5
+  theme: pulse

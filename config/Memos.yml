@@ -1,19 +1,19 @@
-Scoping:
-  abbr: 1200A
+Scoping Memo:
+  name: 1200A
   description: Something goes here for 1200A
   
-Summary:
-  abbr: 1200B
+Summary Memo:
+  name: 1200B
   description: Something goes here for 1200B
   
-Combined Scoping and Summary:
-  abbr: 1200E
+Combined Scoping and Summary Memo:
+  name: 1200E
   description: Something goes here for 1200E
   
-Procedures:
-  abbr: PROC
+Procedures Memo:
+  name: PROC
   description: Detailed logging of procedures performed to complete analytic.
   
-Controls Over Audit Tools:
-  abbr: 22852
+Controls Over Audit Tools Memo:
+  name: 22852
   description: Description of tools used to complete analytic.

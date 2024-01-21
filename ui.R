@@ -20,16 +20,15 @@
 ### Author: Lucas Nelson
 
 library(magrittr)
+library(shiny)
+library(bslib)
 options(shiny.fullstacktrace=TRUE)
+
 source_dir <- 'R'
 purrr::walk(
     list.files(source_dir),
     ~ source(file.path(source_dir, .x))
 )
-
-
-library(shiny)
-library(bslib)
 
 
 ### Data Validation Step
@@ -55,22 +54,22 @@ library(bslib)
 # integration with previous steps
 #   > writing parts of the memo with other steps...
 
-# GITHUB IS WORKING
+
+EBP_CONFIG <- read_config('config/ebp.yml')
+
 
 ui <- page_navbar(
-    title = "EBP Analytics Shell",
+    title = EBP_CONFIG[['title']],
     theme = bs_theme(
-        version = 5,
-        bootswatch = 'pulse',
-        # "navbar-bg" = EBP_COLORS[['bg']]
+        version = EBP_CONFIG[['bslib']][['version']],
+        bootswatch = EBP_CONFIG[['bslib']][['theme']]
     ),
     nav_panel('Shell', PAGE_HOME()),
-    nav_panel('Other', bslib::page_fluid(p('uhhhh khakis'))),
     nav_spacer(),
     nav_menu(
         title='More Info',
-        nav_item('PII', p('page on PII')),
-        nav_item('FAQ', p('some Qs')),
+        nav_item('PII'),
+        nav_item('FAQ'),
         nav_item('...')
     )
 )

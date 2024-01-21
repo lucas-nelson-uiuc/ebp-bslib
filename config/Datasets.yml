@@ -19,12 +19,12 @@
 # separate `sheets` argument. Else, the program will read
 # the first sheet and convert the file to `csv`.
 
-
-Census Data: &Census_Data
+census_data: &census_data
   description: Census level demographic data from current period.
   extension:
     - csv
     - xlsx
+  sheets: all
 
 
 Data Request Form:
@@ -38,12 +38,12 @@ Data Request Form:
 
 Current Period Census:
   abbr: CY
-  <<: *Census_Data
+  <<: *census_data
 
   
 Prior Period Census:
   abbr: PY
-  <<: *Census_Data
+  <<: *census_data
 
     
 DNAV Input:
