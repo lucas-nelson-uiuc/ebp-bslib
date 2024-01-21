@@ -60,12 +60,20 @@ EBP_CONFIG <- read_config('config/ebp.yml')
 
 ui <- page_navbar(
   tags$head(tags$style(HTML(
-    "
-        .bslib-sidebar-layout > .collapse-toggle {
-            padding: 100px 0;
-            background-color: #9b83c0;
-        }
-        "
+    '
+    .bslib-sidebar-layout > .collapse-toggle {
+        padding: 100px 0;
+        background-color: #9b83c0;
+    }
+    
+    .panel-default > .panel-heading {
+        background-color:#9b83c0;
+    }
+    
+    .panel-default > .panel-heading[aria-expanded="true"] {
+        font-weight: bold;
+    }
+    '
   ))),
   title = EBP_CONFIG[['title']],
   theme = bs_theme(

@@ -3,8 +3,8 @@ PAGE_HOME <- function() {
     sidebar <- function() {
         widget_select_analytic <- shiny::selectInput(
             'analytic_selected',
-            '',
-            choices=c('Analytic #1', 'Analytic #2', 'Analytic #3'),
+            NULL,
+            choices=sprintf("Placeholder #%s", 1:5),
             width='100%'
         )
         widget_confirm_analytic <- shiny::actionButton(
@@ -22,7 +22,7 @@ PAGE_HOME <- function() {
         )
         
         bslib::sidebar(
-            tags$b('EBP Analytic'),
+            tags$b('Analytic Configuration'),
             tags$i(
               'Select analytic you want to complete. Complete on-screen instructions to validate input and accurately generate output.',
               style='font-size: 14px; text-align: justify;'
@@ -30,11 +30,12 @@ PAGE_HOME <- function() {
             widget_select_analytic,
             widget_confirm_analytic,
             tags$hr(),
-            tags$b('Memo Generation'),
+            tags$b('Output Configuration'),
             tags$i(
               'Optionally complete on-screen instructions to generate memos along with analytic output.',
               style='font-size: 14px; text-align: justify;'
             ),
+            tags$br(),
             widget_toggle_html,
             widget_toggle_memos,
             width='30%'
@@ -47,49 +48,33 @@ PAGE_HOME <- function() {
             bslib::layout_columns(
                 bslib::page_fluid(
                     h4(tags$b(textOutput('text_analytic_name'))),
-                    tags$i(textOutput('text_analytic_description'))
+                    tags$i(uiOutput('text_analytic_description'))
                 ),
-                uiOutput('ui_analytic_accordion')
+                uiOutput('analytic_details_ui')
             )
         }
         
-        analytic_content <- function() {
-            bslib::page_fluid(
-              tags$h5(tags$b("01. Data Request Form")),
-              uiOutput('ui_data_request_form'),
-              tags$hr(),
-              tags$h5(tags$b("02. Analytic-Specific Data")),
-              uiOutput('ui_input_datasets'),
-            )
+        data_request_form_content <- function() {
+          bslib::page_fluid(
+            "Each analytic has a Data Request Form (DRF), a file that specifies important analytic-related material and field mappings for the raw data.",
+            uiOutput('ui_data_request_form')
+          )
         }
         
-        perform_procedures <- function() {
-            widget_knit_markdown <- shiny::actionButton(
-              'knit_markdown',
-              tags$b('Knit Markdown File'),
-              width='100%'
-            )
-            widget_generate_memo <- shiny::actionButton(
-              'generate_memo',
-              tags$b('Generate Documentation'),
-              width='100%'
-            )
-            bslib::page_fluid(
-              tags$h5(tags$b("03. Perform Procedures")),
-              p('Knit Markdown & Generate Memos'),
-              bslib::layout_columns(
-                widget_knit_markdown,
-                widget_generate_memo
-              )
-            )
+        analytic_data_content <- function() {
+          bslib::page_fluid(
+            "This panel allows you to interact with the data provided for the analytic. Ensure the data looks as expected.",
+            uiOutput('ui_analytic_data_content')
+          )
         }
         
         bslib::page_fluid(
-            analytic_header(),
-            tags$hr(),
-            analytic_content(),
-            tags$hr(),
-            perform_procedures()
+          analytic_header(),
+          bslib::page_navbar(
+            bslib::nav_panel("Data Request Form", data_request_form_content()),
+            bslib::nav_panel("Analytic Data", analytic_data_content()),
+            bslib::nav_panel("Perform Procedures", uiOutput('display_procedures_ui'))
+          )
         )
     }
     
