@@ -39,7 +39,7 @@ PAGE_HOME <- function() {
           widget_toggle_html,
           widget_toggle_memos,
           tags$hr(),
-          width='30%'
+          width='20%'
         )
     }
     
@@ -63,7 +63,6 @@ PAGE_HOME <- function() {
         
         analytic_data_content <- function() {
           bslib::page_fluid(
-            # uiOutput('display_validations_ui'),
             uiOutput('display_analytic_data_ui')
           )
         }

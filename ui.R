@@ -80,7 +80,7 @@ ui <- page_navbar(
       version = EBP_CONFIG[['bslib']][['version']],
       bootswatch = EBP_CONFIG[['bslib']][['theme']]
   ),
-  nav_panel('Shell', PAGE_HOME()),
+  nav_panel('Home Page', PAGE_HOME()),
   nav_spacer(),
   nav_menu(
       title='More Info',

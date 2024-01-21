@@ -1,47 +1,54 @@
-render_display_data <- function(id, info) {
-  bslib::navset_card_pill(
-    bslib::nav_panel("Info", info),
-    # id=NS(id, "display_data_container"),
-    id=NS(id, "navset_container")
+#' Render content within Data Container
+#'
+#' Components for user to upload data as well as view and interact with the
+#' processed data. Data validations render next to the data, allowing users to
+#' easily observe invalid data properties within the app.
+#' 
+#' TODO: offer users ways to "fix" data in-app
+#' TODO: specify to user what happens with the data after uploaded
+#'
+#' @author Lucas Nelson
+render_display_data <- function(id) {
+  bslib::page_fluid(
+    shiny::fileInput(NS(id, 'file'), NULL, buttonLabel = 'Browse Files'),
+    bslib::layout_columns(
+      DT::dataTableOutput(NS(id, 'table')),
+      'placeholder',
+      # render_data_validations(),
+      col_widths=c(7, 5)
+    )
   )
 }
 
 
-module_display_data <- function(id, analytic_obj=NULL) {
+#' Server for handling requests within Data Container
+#'
+#' Processes uploaded files and returns data and validations to be rendered.
+#'
+#' @author Lucas Nelson
+module_display_data <- function(id, panel_title=NULL) {
   moduleServer(id, function(input, output, session) {
     
-    print(paste("Working on", id))
-    analytic_obj_datasets <- analytic_obj[['datasets']]
-    
-    if (id == 'DataRequestForm') {
-      panel_names <- analytic_obj_datasets[['Data Request Form']][['sheets']]
-      panel_values <- c('random shit 1', 'random shit 2')
-    } else {
-      analytic_obj_datasets <- purrr::discard_at(analytic_obj_datasets, 1)
-      panel_names <- names(analytic_obj_datasets)
-      panel_values <- purrr::map_chr(
-        names(analytic_obj_datasets), ~sprintf("Content for %s", .x)
+    file_data <- reactive({
+      req(input$file)
+      ext <- tools::file_ext(input$file$name)
+      switch(
+        ext,
+        csv = vroom::vroom(input$file$datapath, delim=','),
+        xlsx = readxl::read_excel(input$file$datapath),
+        validate("Invalid file extension. Expected one of [csv, xlsx]")
       )
-    }
+    })
     
-    purrr::walk2(
-      panel_names, panel_values,
-      \(title, content) bslib::nav_insert(
-        id="navset_container",
-        target="Info",
-        position="after",
-        bslib::nav_panel(title=title, content)
-      )
+    observeEvent(
+      ignoreInit=TRUE,
+      ignoreNULL=TRUE,
+      eventExpr = {input$file}, 
+      handlerExpr = {
+        output$table <- DT::renderDataTable(datatable(data()))
+        module_data_validations(sprintf("%s-%s", "validate", panel_title))
+      }
     )
     
-    # instantiate servers - no spaces in name
-    
-    bslib::nav_insert(
-      id="navset_container",
-      target="Info",
-      position="after",
-      bslib::nav_spacer()
-    )
-
   })
 }

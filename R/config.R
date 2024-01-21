@@ -1,3 +1,10 @@
+# Configuration Objects are the most important aspect of this Shiny application.
+# Defined in the "config/" directory as YAML files, they provide the necessary
+# information for successfully completing the procedures offered in the
+# application. The application should only be viewed as a way of displaying
+# configuration objects rather than as a way of defining them.
+
+
 #' Read YAML file
 #' 
 #' Additional checks to ensure YAML file is configured correctly.
@@ -36,6 +43,9 @@ update_config <- function(analytics_obj=NULL, type=NULL, type_config=NULL) {
 }
 
 
+#' Utility function for subsetting Configuration Object
+#' 
+#' @author Lucas Nelson
 get_config_attribute <- function(config_obj=NULL, attribute=NULL) {
   config_obj[[attribute]]
 }
