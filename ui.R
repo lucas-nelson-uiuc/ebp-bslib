@@ -81,6 +81,7 @@ ui <- page_navbar(
       bootswatch = EBP_CONFIG[['bslib']][['theme']]
   ),
   nav_panel('Home Page', PAGE_HOME()),
+  nav_panel('Test', render_display_data('TEST')),
   nav_spacer(),
   nav_menu(
       title='More Info',

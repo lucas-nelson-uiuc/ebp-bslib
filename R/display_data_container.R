@@ -4,10 +4,10 @@
 #' module's server function.
 #' 
 #' @author Lucas Nelson
-render_display_data_container <- function(id, info) {
+render_display_data_container <- function(id, info=NULL) {
   bslib::navset_card_pill(
-    bslib::nav_panel("Info", info),
-    id=NS(id, "navset_container")
+    id=shiny::NS(id, "navset_container"),
+    bslib::nav_panel("Info", info)
   )
 }
 
@@ -31,13 +31,15 @@ module_display_data_container <- function(id, analytic_obj=NULL) {
       )
     }
     
+    observe(print(paste('FUCK YEAH', id)))
+    
     purrr::walk2(
       panel_names, panel_values,
       \(title, content) bslib::nav_insert(
         id="navset_container",
+        nav=bslib::nav_panel(title=title, content),
         target="Info",
-        position="before",
-        bslib::nav_panel(title=title, content)
+        position="before"
       )
     )
     
@@ -46,8 +48,9 @@ module_display_data_container <- function(id, analytic_obj=NULL) {
     bslib::nav_insert(
       id="navset_container",
       target="Info",
-      position="before",
-      bslib::nav_spacer()
+      position="after",
+      # bslib::nav_spacer()
+      nav=bslib::nav_panel('WHAT THE FUCK')
     )
 
   })

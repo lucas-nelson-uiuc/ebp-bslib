@@ -55,23 +55,11 @@ PAGE_HOME <- function() {
             )
         }
         
-        data_request_form_content <- function() {
-          bslib::page_fluid(
-            uiOutput('display_data_request_form_ui')
-          )
-        }
-        
-        analytic_data_content <- function() {
-          bslib::page_fluid(
-            uiOutput('display_analytic_data_ui')
-          )
-        }
-        
         bslib::page_fluid(
           analytic_header(),
           bslib::page_navbar(
-            bslib::nav_panel("Data Request Form", data_request_form_content()),
-            bslib::nav_panel("Analytic Data", analytic_data_content()),
+            bslib::nav_panel("Data Request Form", uiOutput('display_data_request_form_ui')),
+            bslib::nav_panel("Analytic Data", uiOutput('display_analytic_data_ui')),
             bslib::nav_panel("Perform Procedures", uiOutput('display_procedures_ui'))
           )
         )

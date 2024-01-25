@@ -5,12 +5,9 @@ render_display_procedures <- function(id) {
   knit_markdown_content <- uiOutput(NS(id, 'knit_markdown'))
   generate_memos_content <- uiOutput(NS(id, 'generate_memos'))
   
-  bslib::page_fluid(
-    bslib::layout_columns(
-      knit_markdown_content,
-      generate_memos_content,
-    ),
-    tags$hr()
+  bslib::layout_columns(
+    knit_markdown_content,
+    generate_memos_content,
   )
 }
 

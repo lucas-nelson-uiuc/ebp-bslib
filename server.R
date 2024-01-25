@@ -76,6 +76,8 @@ server <- function(input, output, session) {
       
     }
   )
+  
+  module_display_data('TEST')
 
   # handler for user confirming analytic selection from dropdown
   observeEvent(
@@ -131,24 +133,24 @@ server <- function(input, output, session) {
           # render contents for Data Request Form section
           output$display_data_request_form_ui <- renderUI({
             render_display_data_container(
-              "DataRequestForm",
+              id="DataRequestForm",
               info="Each analytic has a Data Request Form (DRF), a file that specifies important analytic-related material and field mappings for the raw data."
             )
           })
           module_display_data_container(
-            "DataRequestForm",
+            id="DataRequestForm",
             analytic_obj=EBP_ANALYTIC()
           )
           
           # render contents for Analytic-Specific Data section
           output$display_analytic_data_ui <- renderUI({
             render_display_data_container(
-              "AnalyticData",
+              id="AnalyticData",
               info="This panel allows you to interact with the data provided for the analytic. Ensure the data looks as expected."
             )
           })
           module_display_data_container(
-            "AnalyticData",
+            id="AnalyticData",
             analytic_obj=EBP_ANALYTIC()
           )
           
